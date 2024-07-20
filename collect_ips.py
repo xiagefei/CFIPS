@@ -39,6 +39,6 @@ with open('ip.txt', 'w') as file:
             
             # 如果找到IP地址,则写入文件
             for ip in ip_matches:
-                file.write(ip + '\n')
+                file.write(ip + ',')
 
 print('IP地址已保存到ip.txt文件中。')
