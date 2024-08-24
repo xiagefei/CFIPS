@@ -27,7 +27,7 @@ with open('ip.txt', 'w') as file:
         if url == '':
             elements = soup.find_all('tr')
         else:
-            elements = soup.find_all('tr')
+            elements = soup.find_all('li')
         
         # 遍历所有元素,查找IP地址
         for element in elements:
