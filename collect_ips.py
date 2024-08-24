@@ -24,10 +24,10 @@ with open('ip.txt', 'w') as file:
         soup = BeautifulSoup(response.text, 'html.parser')
         
         # 根据网站的不同结构找到包含IP地址的元素
-        if url == '':
+        if url == 'https://345673.xyz':
             elements = soup.find_all('tr')
         else:
-            elements = soup.find_all('td')
+            elements = soup.find_all('li')
         
         # 遍历所有元素,查找IP地址
         for element in elements:
