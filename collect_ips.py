@@ -21,7 +21,7 @@ with open('ip.txt', 'w') as file:
         response = requests.get(url)
         
         # 使用BeautifulSoup解析HTML
-        soup = BeautifulSoup(response.text, 'html.parser')
+        #soup = BeautifulSoup(response.text, 'html.parser')
         
         # 根据网站的不同结构找到包含IP地址的元素
         if url == 'https://345673.xyz/':
