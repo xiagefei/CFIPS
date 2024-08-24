@@ -16,9 +16,9 @@ if os.path.exists('ip.txt'):
 
 # 创建一个文件来存储IP地址
 with open('ip.txt', 'w') as file:
-    for url in urls:
+    #for url in urls:
         # 发送HTTP请求获取网页内容
-        response = requests.get(url)
+    response = requests.get(url)
         
         # 使用BeautifulSoup解析HTML
         #soup = BeautifulSoup(response.text, 'html.parser')
