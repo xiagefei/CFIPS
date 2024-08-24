@@ -8,7 +8,7 @@ urls = ['https://345673.xyz/'
         ]
 
 # 正则表达式用于匹配IP地址
-ip_pattern = r'\d+\.\d+\.\d+\.\d+'
+#ip_pattern = r'\d+\.\d+\.\d+\.\d+'
 
 # 检查ip.txt文件是否存在,如果存在则删除它
 if os.path.exists('ip.txt'):
@@ -36,6 +36,9 @@ with open('ip.txt', 'w') as file:
             
             # 如果找到IP地址,则写入文件
             #for ip in ip_matches:
+    
+    if response.status_code == 200:
+    ip_pattern = r'\d+\.\d+\.\d+\.\d+'
     ips = re.findall(ip_pattern, response.text)
     for ip in ips:
          file.write(ip + '\n')
