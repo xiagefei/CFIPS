@@ -4,7 +4,7 @@ import re
 import os
 
 # 目标URL列表
-urls = ['https://345673.xyz'
+urls = ['https://ip.164746.xyz'
         ]
 
 # 正则表达式用于匹配IP地址
@@ -18,7 +18,7 @@ if os.path.exists('ip.txt'):
 with open('ip.txt', 'w') as file:
     for url in urls:
         # 发送HTTP请求获取网页内容
-        response = requests.get(url)
+        response = requests.get(urls)
         
         # 使用BeautifulSoup解析HTML
         soup = BeautifulSoup(response.text, 'html.parser')
