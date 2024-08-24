@@ -24,18 +24,20 @@ with open('ip.txt', 'w') as file:
         #soup = BeautifulSoup(response.text, 'html.parser')
         
         # 根据网站的不同结构找到包含IP地址的元素
-        if url == 'https://345673.xyz/':
-            elements = soup.find_all('tr')
-        else:
-            elements = soup.find_all('li')
+        #if url == 'https://345673.xyz/':
+            #elements = soup.find_all('tr')
+        #else:
+            #elements = soup.find_all('li')
         
         # 遍历所有元素,查找IP地址
-        for element in elements:
-            element_text = element.get_text()
-            ip_matches = re.findall(ip_pattern, element_text)
+        #for element in elements:
+            #element_text = element.get_text()
+            #ip_matches = re.findall(ip_pattern, element_text)
             
             # 如果找到IP地址,则写入文件
-            for ip in ip_matches:
-                file.write(ip + '\n')
+            #for ip in ip_matches:
+    ips = re.findall(ip_pattern, response.text)
+    for ip in ips:
+         file.write(ip + '\n')
 
 print('IP地址已保存到ip.txt文件中。')
