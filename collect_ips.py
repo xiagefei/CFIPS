@@ -4,7 +4,7 @@ import re
 import os
 
 # 目标URL列表
-urls = 'https://345673.xyz'
+urls = 'http://345673.xyz'
 
 # 正则表达式用于匹配IP地址
 ip_pattern = r'\d+\.\d+\.\d+\.\d+'
