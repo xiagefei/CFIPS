@@ -27,7 +27,7 @@ if os.path.exists('ip.txt'):
 # 创建一个文件来存储 IP 地址
 with open('ip.txt', 'w') as file:
     # 设置浏览器驱动
-    driver = webdriver.Chrome(options=chrome_options,executable_path=chromedriver)
+    driver = webdriver.Chrome(options=chrome_options)
     for url in urls:
         # 打开网页
         driver.get(url)
