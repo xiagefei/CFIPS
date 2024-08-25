@@ -1,7 +1,8 @@
 import re
+import os
+import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import os
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
