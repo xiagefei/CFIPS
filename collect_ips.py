@@ -4,7 +4,7 @@ import os
 
 # 目标 URL 列表
 urls = ['https://monitor.gacjie.cn/page/cloudflare/ipv4.html', 
-        'https://ip.164746.xyz']
+        'http://ip.164746.xyz']
 
 # 正则表达式用于匹配 IP 地址
 ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
