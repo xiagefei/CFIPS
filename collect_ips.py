@@ -24,7 +24,7 @@ with open('ip.txt', 'w') as file:
         tree = html.fromstring(response.content)
         
         # 根据网站的不同结构找到包含 IP 地址的元素
-        if url == 'https://monitor.gacjie.cn/page/cloudflare/ipv4.html':
+        if url == '':
             elements = tree.xpath('//tr')
         elif url == 'https://ip.164746.xyz':
             elements = tree.xpath('//tr')
