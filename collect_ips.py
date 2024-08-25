@@ -7,7 +7,7 @@ import os
 urls = ['https://monitor.gacjie.cn/page/cloudflare/ipv4.html']
 
 # 正则表达式用于匹配 IP 地址
-ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
+ip_pattern = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
 
 # 检查 ip.txt 文件是否存在，如果存在则删除它
 if os.path.exists('ip.txt'):
