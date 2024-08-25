@@ -30,7 +30,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests
         pip install beautifulsoup4
-        pop install lxml
+        pip install lxml
         
     - name: Run script
       run: python ${{ github.workspace }}/collect_ips.py
