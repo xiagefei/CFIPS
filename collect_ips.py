@@ -28,7 +28,7 @@ with open('ip.txt', 'w') as file:
         elif url == 'https://ip.164746.xyz':
             elements = tree.xpath('//tr')
         else:
-            elements = tree.xpath('//li')
+            elements = tree.xpath('//tr')
         
         # 遍历所有元素，查找 IP 地址
         for element in elements:
