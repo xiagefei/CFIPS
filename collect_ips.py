@@ -1,6 +1,7 @@
 import re
 import os
 import selenium
+import lxml
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
