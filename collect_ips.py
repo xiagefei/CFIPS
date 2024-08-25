@@ -14,10 +14,9 @@ chromedriver = "/usr/bin/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
-urls = ['https://monitor.gacjie.cn/page/cloudflare/ipv4.html', 
-        'https://ip.164746.xyz']
+urls = ['https://345673.xyz/']
 
-# 正则表达式用于匹配 IP 地址
+#正则表达式用于匹配 IP 地址
 ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
 
 # 检查 ip.txt 文件是否存在，如果存在则删除它
