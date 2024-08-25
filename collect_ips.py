@@ -1,13 +1,15 @@
-from selenium import webdriver
 import re
-import os
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import os
 
-chrome_options = Options()
+chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--disable-dev-shm-usage')
-browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
+chromedriver = "/usr/bin/chromedriver"
+os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = ['https://monitor.gacjie.cn/page/cloudflare/ipv4.html', 
