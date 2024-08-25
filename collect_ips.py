@@ -1,6 +1,13 @@
 from selenium import webdriver
 import re
 import os
+from selenium import webdriver
+
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+browser = webdriver.Chrome('/usr/bin/chromedriver', options=chrome_options)
 
 # 目标 URL 列表
 urls = ['https://monitor.gacjie.cn/page/cloudflare/ipv4.html', 
@@ -16,7 +23,7 @@ if os.path.exists('ip.txt'):
 # 创建一个文件来存储 IP 地址
 with open('ip.txt', 'w') as file:
     # 设置浏览器驱动
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(options=chrome_options,executable_path=chromedriver)
     for url in urls:
         # 打开网页
         driver.get(url)
