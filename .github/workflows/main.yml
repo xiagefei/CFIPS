@@ -36,12 +36,12 @@ jobs:
 
     - name: Install ChromeDriver
       run: |
-          wget -q -O /tmp/chromedriver-linux64.zip https://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip
+          wget -q -O /tmp/chromedriver-linux64.zip https://storage.googleapis.com/chrome-for-testing-public/128.0.6613.84/linux64/chromedriver-linux64.zipchromedriver_linux64.zip
           cd /tmp
           unzip chromedriver-linux64.zip
           rm -rf chromedriver-linux64.zip
-          sudo mv chromedriver /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
+          sudo mv chromedriver /usr/local/bin/chromedriver-linux64/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
           chromedriver --version
 
     - name: Run script
