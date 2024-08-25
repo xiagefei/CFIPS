@@ -32,7 +32,13 @@ jobs:
         pip install beautifulsoup4
         pip install lxml
         pip install selenium
-        
+
+    - name: Download ChromeDriver
+        run: |
+          CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          wget -q -O /usr/bin/chromedriver https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
+          unzip /usr/bin/chromedriver -d /usr/bin/
+          chmod +x /usr/bin/chromedriver
     - name: Run script
       run: python ${{ github.workspace }}/collect_ips.py
         
