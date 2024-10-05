@@ -36,13 +36,7 @@ jobs:
 
     - name: Install ChromeDriver
       run: |
-          # 获取最新的 ChromeDriver 版本号
-          LATEST_VERSION=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json | grep -oP '"version": "\K(.*?)(?=")' | head -n 1)
-
-          # 使用最新版本下载对应的 ChromeDriver
-          wget -q -O /tmp/chromedriver-linux64.zip https://storage.googleapis.com/chrome-for-testing-public/$LATEST_VERSION/linux64/chromedriver-linux64.zip
-
-          echo "Downloaded ChromeDriver version: $LATEST_VERSION"
+          wget -q -O /tmp/chromedriver-linux64.zip https://storage.googleapis.com/chrome-for-testing-public/129.0.6668.58/linux64/chromedriver-linux64.zip
           cd /tmp
           unzip chromedriver-linux64.zip
           rm -rf chromedriver-linux64.zip
