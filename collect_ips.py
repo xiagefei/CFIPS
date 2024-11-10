@@ -15,7 +15,13 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = [
-'https://ipdb.api.030101.xyz/?type=bestcf&country=true'
+'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
+'https://api.uouin.com/cloudflare.html',
+'https://monitor.115155.xyz/',
+'https://www.wetest.vip/page/cloudflare/address_v4.html',
+'https://cf.090227.xyz/',
+'https://ip.164746.xyz',
+'https://addressesapi.090227.xyz/CloudFlareYes'
 ]
 
 # 正则表达式用于匹配 IP 地址
