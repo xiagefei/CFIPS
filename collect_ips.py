@@ -19,7 +19,8 @@ urls = [
 'https://ip.164746.xyz',
 'https://cf.090227.xyz/',
 'https://www.wetest.vip/page/cloudflare/address_v4.html',
-'https://stock.hostmonit.com/CloudFlareYes'
+'https://stock.hostmonit.com/CloudFlareYes',
+'https://api.uouin.com/cloudflare.html'
 ]
 
 # 正则表达式用于匹配 IP 地址
