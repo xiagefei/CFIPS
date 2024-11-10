@@ -17,7 +17,6 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 urls = [
 'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
 'https://ip.164746.xyz',
-'https://cf.090227.xyz/',
 'https://stock.hostmonit.com/CloudFlareYes',
 'https://api.uouin.com/cloudflare.html',
 'https://monitor.115155.xyz/'
