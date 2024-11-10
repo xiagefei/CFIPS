@@ -18,8 +18,7 @@ urls = [
 'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
 'https://ip.164746.xyz',
 'https://stock.hostmonit.com/CloudFlareYes',
-'https://api.uouin.com/cloudflare.html',
-'https://monitor.115155.xyz/'
+'https://api.uouin.com/cloudflare.html'
 ]
 
 # 正则表达式用于匹配 IP 地址
