@@ -15,7 +15,6 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = [
-'https://ip.164746.xyz/',
 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'
 ]
 
