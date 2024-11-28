@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install dnspython  # 安装dnspython库，因为你的脚本依赖它
-
+        pip install requests
     - name: Run script to get A records
       run: |
         python domain_ip.py  # 将这里替换为你的实际Python脚本文件名，比如main.py等
