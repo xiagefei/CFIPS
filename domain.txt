@@ -1,1 +1,3 @@
 32-cdn.livecdn.me
+32-cdn.livecdn.vip
+global-cdn.me
