@@ -1,4 +1,6 @@
 import dns.resolver
+import requests
+
 
 def get_a_records(domain):
     a_records = []
@@ -15,18 +17,24 @@ def get_a_records(domain):
 
     return a_records
 
-if __name__ == "__main__":
-    txt_file_path = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain.txt"  
-    with open(txt_file_path, "r") as f:
-        domains = f.readlines()
 
-    with open("domain.txt", "w") as output_file:  # 打开用于保存结果的单个文件
+if __name__ == "__main__":
+    # 从指定的URL获取域名列表
+    url = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain.txt"
+    response = requests.get(url)
+    if response.status_code == 200:
+        domains = response.text.splitlines()
+    else:
+        print(f"无法从指定URL获取域名列表，状态码: {response.status_code}")
+        exit(1)
+
+    with open("domain_ips.txt", "w") as output_file:
         for domain in domains:
             domain = domain.strip()
             a_records = get_a_records(domain)
 
             if a_records:
-                output_file.write(f"Domain: {domain}\n")  # 先写入域名
+                output_file.write(f"Domain: {domain}\n")
                 for record in a_records:
                     output_file.write(record + "\n")
-                output_file.write("\n")  # 每个域名的记录写完后空一行
+                output_file.write("\n")
