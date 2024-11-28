@@ -36,5 +36,5 @@ if __name__ == "__main__":
             if a_records:
                 output_file.write(f"Domain: {domain}\n")
                 for record in a_records:
-                    output_file.write(record)
-                output_file.write("\n")
+                    output_file.write(record + "\n")
+                output_file.write()
