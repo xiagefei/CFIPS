@@ -24,4 +24,4 @@ jobs:
 
     - name: Run script to get A records
       run: |
-        python your_script_name.py  # 将这里替换为你的实际Python脚本文件名，比如main.py等
+        python domain_ip.py  # 将这里替换为你的实际Python脚本文件名，比如main.py等
