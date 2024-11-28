@@ -22,6 +22,18 @@ jobs:
       run: |
         pip install dnspython  # 安装dnspython库，因为你的脚本依赖它
         pip install requests
+
     - name: Run script to get A records
       run: |
-        python domain_ip.py  # 将这里替换为你的实际Python脚本文件名，比如main.py等
+        python domain_ip.py  
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "leung0108@gmail.com"
+        git config --global user.name "leung7963"
+        if [ -n "$(git status --porcelain)" ]; then
+          git add domain_ips.txt
+          git commit -m "Automatic update"
+          git push
+        else
+          echo "No changes detected, skipping commit."
+        fi
