@@ -16,7 +16,7 @@ def get_a_records(domain):
     return a_records
 
 if __name__ == "__main__":
-    txt_file_path = "domains.txt"  
+    txt_file_path = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain.txt"  
     with open(txt_file_path, "r") as f:
         domains = f.readlines()
 
