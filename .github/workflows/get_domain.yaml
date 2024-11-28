@@ -1,1 +1,27 @@
-Ss
+name: Get A Records
+
+on:
+  push:
+    branches:
+      - main  # 可以根据需要修改触发的分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # 根据你的需求指定具体版本
+
+    - name: Install dependencies
+      run: |
+        pip install dnspython  # 安装dnspython库，因为你的脚本依赖它
+
+    - name: Run script to get A records
+      run: |
+        python your_script_name.py  # 将这里替换为你的实际Python脚本文件名，比如main.py等
