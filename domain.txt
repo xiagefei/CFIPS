@@ -10,3 +10,5 @@ s10-e1.doaminwhole.com
 s10-e1.generalcdn.com
 s10-e1.newyvpa.com
 s10-e1.newwycdn.com
+s6-e1.timeprecei.com
+s6-e1.arebyte.xyz
