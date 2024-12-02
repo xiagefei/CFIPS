@@ -21,8 +21,7 @@ urls = [
 'https://www.wetest.vip/page/cloudflare/address_v4.html',
 'https://cf.090227.xyz/',
 'https://ip.164746.xyz',
-'https://addressesapi.090227.xyz/CloudFlareYes',
-'https://fofa.info/result?qbase64=b3JnPSJDTE9VREZMQVJFTkVUIg%3D%3D'
+'https://addressesapi.090227.xyz/CloudFlareYes'
 ]
 
 # 正则表达式用于匹配 IP 地址
