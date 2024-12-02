@@ -1,6 +1,5 @@
 32-cdn.livecdn.me
 s1-e1.pipecdn.vip
-global-cdn.me
 abccdn.me
 yfsp.tv
 iyf.tv
