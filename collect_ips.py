@@ -22,7 +22,8 @@ urls = [
 'https://cf.090227.xyz/',
 'https://ip.164746.xyz',
 'https://addressesapi.090227.xyz/cloudFlareYes',
-'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt'
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt',
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.txt'
 ]
 
 # 正则表达式用于匹配 IP 地址
