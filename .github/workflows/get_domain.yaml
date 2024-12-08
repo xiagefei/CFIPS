@@ -1,8 +1,8 @@
 name: Get A Records
 
 on:
-  schedule:
-    - cron: '0 7 */1 * *'
+  #schedule:
+    #- cron: '0 7 */1 * *'
   #push:
 
 jobs:
