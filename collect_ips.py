@@ -15,7 +15,7 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = [
-'https://fofa.info/result?qbase64=c2VydmVyPT0iY2xvdWRmbGFyZSIgJiYgcG9ydD09IjQ0MyIgJiYgaGVhZGVyPSJGb3JiaWRkZW4iICYmIHJlZ2lvbj09IkhLIg%3D%3D',
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.txt',
 'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt'
 ]
 
