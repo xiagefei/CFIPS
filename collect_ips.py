@@ -15,15 +15,8 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = [
-'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
-'https://api.uouin.com/cloudflare.html',
-'https://monitor.115155.xyz/',
-'https://www.wetest.vip/page/cloudflare/address_v4.html',
-'https://cf.090227.xyz/',
-'https://ip.164746.xyz',
-'https://addressesapi.090227.xyz/cloudFlareYes',
-'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt',
-'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.txt'
+'https://fofa.info/result?qbase64=c2VydmVyPT0iY2xvdWRmbGFyZSIgJiYgcG9ydD09IjQ0MyIgJiYgaGVhZGVyPSJGb3JiaWRkZW4iICYmIHJlZ2lvbj09IkhLIg%3D%3D',
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt'
 ]
 
 # 正则表达式用于匹配 IP 地址
