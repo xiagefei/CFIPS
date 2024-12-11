@@ -15,7 +15,9 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = [
-'https://www.cloudflare.com/ips-v4/#'
+'https://www.cloudflare.com/ips-v4/#',
+#'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.txt',
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt'
 ]
 
 # 正则表达式用于匹配 IP 地址
