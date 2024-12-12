@@ -6,3 +6,4 @@ iyf.tv
 33-cdn.cdnyysd.me
 poki.com
 rutracker.org
+rutracker.net
