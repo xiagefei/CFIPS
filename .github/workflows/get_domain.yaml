@@ -3,7 +3,7 @@ name: Get A Records
 on:
   schedule:
     - cron: '0 7 */1 * *'
-  #push:
+  push:
 
 jobs:
   build:
