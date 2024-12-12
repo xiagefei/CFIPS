@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch: # 允许手动触发
-  push:
+  #push:
 
 jobs:
 
