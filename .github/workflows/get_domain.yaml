@@ -1,9 +1,10 @@
 name: Get A Records
 
 on:
-  schedule:
-    - cron: '0 7 */1 * *'
-  push:
+  #schedule:
+    #- cron: '0 7 */1 * *'
+  #push:
+  work-dispacth:
 
 jobs:
   build:
