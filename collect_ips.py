@@ -17,7 +17,7 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 urls = [
 #'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.txt',
 #'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt'
-'https://ips.huskydsb.us.kg/'
+'https://ips.huskydsb.us.kg'
 ]
 
 # 正则表达式用于匹配 IP 地址
