@@ -1,6 +1,11 @@
 name: Get A Records
 
 on:
+  permissions:
+  contents: write
+  push:
+    paths:
+      - domain.txt
   schedule:
     - cron: '0 7 */1 * *'
   push:
