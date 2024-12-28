@@ -1,8 +1,9 @@
-name: Get A Records
+name: Get A Record
+
+permissions:
+  contents: write
 
 on:
-  permissions:
-  contents: write
   push:
     paths:
       - domain.txt
