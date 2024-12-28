@@ -1,8 +1,9 @@
 name: Update IP List
 
-on:
-  permissions:
+permissions:
   contents: write
+
+on:
   push:
     paths:
       - domain_ips.txt # 根据变量定义的文件名，需要手动指定
