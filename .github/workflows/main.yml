@@ -1,6 +1,12 @@
 name: Update IP List
 
 on:
+  permissions:
+  contents: write
+  push:
+    paths:
+      - domainips.txt # 根据变量定义的文件名，需要手动指定
+  workflow_dispatch:
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch: # 允许手动触发
