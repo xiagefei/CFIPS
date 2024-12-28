@@ -8,7 +8,7 @@ on:
     paths:
       - domain.txt
   schedule:
-    - cron: '0 7 */1 * *'
+    - cron: '0 6 */1 * *'
   push:
   workflow_dispatch:
 
