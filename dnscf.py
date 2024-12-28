@@ -24,7 +24,7 @@ def get_cf_speed_test_ip(timeout=10, max_retries=5):
     for attempt in range(max_retries):
         try:
             # 发送 GET 请求，设置超时
-            response = requests.get('https://raw.githubusercontent.com/leung7963/CF-PROXYIP/main/proxyip.txt', timeout=timeout)
+            response = requests.get('https://raw.githubusercontent.com/leung7963/CFIPS/main/ip.txt', timeout=timeout)
             # 检查响应状态码
             if response.status_code == 200:
                 return response.text
