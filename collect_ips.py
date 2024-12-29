@@ -15,8 +15,8 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 # 目标 URL 列表
 urls = [
-'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.txt',
-'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.txt'
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.js',
+'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.js'
 ]
 
 # 正则表达式用于匹配 IP 地址
@@ -42,7 +42,7 @@ with open('ip.txt', 'w') as file:
     driver.quit()
 
 unique_ips = list(set(all_ips))
-with open('ip.txt', 'w') as file:
+with open('ip.js', 'w') as file:
     for ip in unique_ips:
         file.write(ip + '\n')
 
