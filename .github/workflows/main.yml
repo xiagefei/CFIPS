@@ -4,7 +4,9 @@ permissions:
   contents: write
 
 on:
-  # push:
+  push:
+    paths:
+      - 'domain_ips.txt'
   workflow_dispatch: # 允许手动触发
 
 jobs:
