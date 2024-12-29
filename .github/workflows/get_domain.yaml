@@ -43,7 +43,3 @@ jobs:
         else
           echo "No changes detected, skipping commit."
         fi
-  call_reusable:
-    uses:./.github/workflows/main.yml
-    with:
-      param1: "This is a test string"
