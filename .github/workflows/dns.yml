@@ -3,7 +3,7 @@ name: dns_cf_push
 on:
   push:
     paths:
-      - './ip.txt'
+      - ip.txt
   schedule:
     - cron: '0 */2 * * *'
   workflow_dispatch:
