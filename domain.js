@@ -7,3 +7,4 @@ poki.com
 m8t.vboku.com
 m3u8.hmrvideo.com
 rutracker.org
+rutracker.net
