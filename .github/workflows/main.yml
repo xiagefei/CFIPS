@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     paths:
-      - 'domain_ips.txt'
+      - domain_ips.txt
   schedule:
     - cron: '0 */2 * * *'
   workflow_dispatch: # 允许手动触发
