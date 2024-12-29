@@ -23,11 +23,11 @@ urls = [
 ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
 
 # 检查 ip.txt 文件是否存在，如果存在则删除它
-if os.path.exists('ip.txt'):
-    os.remove('ip.txt')
+if os.path.exists('ip.js'):
+    os.remove('ip.js')
 
 # 创建一个文件来存储 IP 地址
-with open('ip.txt', 'w') as file:
+with open('ip.js', 'w') as file:
     # 设置浏览器驱动
     driver = webdriver.Chrome(options=chrome_options)
     all_ips = []
@@ -46,4 +46,4 @@ with open('ip.js', 'w') as file:
     for ip in unique_ips:
         file.write(ip + '\n')
 
-print('IP 地址已去重并保存到 ip.txt 文件中。')
+print('IP 地址已去重并保存到 ip.js 文件中。')
