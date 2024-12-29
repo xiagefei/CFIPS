@@ -6,4 +6,3 @@ poki.com
 6tm.wdubo.com
 m8t.vboku.com
 m3u8.hmrvideo.com
-rutracker.net
