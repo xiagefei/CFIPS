@@ -20,7 +20,7 @@ def get_a_records(domain):
 
 if __name__ == "__main__":
     # 从指定的URL获取域名列表
-    url = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain.js"
+    url = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain"
     response = requests.get(url)
     if response.status_code == 200:
         domains = response.text.splitlines()
@@ -28,7 +28,7 @@ if __name__ == "__main__":
         print(f"无法从指定URL获取域名列表，状态码: {response.status_code}")
         exit(1)
 
-    with open("domain_ips.js", "w") as output_file:
+    with open("domain_ips", "w") as output_file:
         for domain in domains:
             domain = domain.strip()
             a_records = get_a_records(domain)
