@@ -20,7 +20,7 @@ def get_a_records(domain):
 
 if __name__ == "__main__":
     # 从指定的URL获取域名列表
-    url = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain.txt"
+    url = "https://raw.githubusercontent.com/leung7963/CFIPS/refs/heads/main/domain.js"
     response = requests.get(url)
     if response.status_code == 200:
         domains = response.text.splitlines()
