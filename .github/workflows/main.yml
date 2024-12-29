@@ -4,7 +4,7 @@ permissions:
   contents: write
 
 on:
-  push:# 根据变量定义的文件名，需要手动指定
+  push:
   workflow_dispatch: # 允许手动触发
 
 jobs:
