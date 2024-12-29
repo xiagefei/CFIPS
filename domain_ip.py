@@ -28,7 +28,7 @@ if __name__ == "__main__":
         print(f"无法从指定URL获取域名列表，状态码: {response.status_code}")
         exit(1)
 
-    with open("domain_ips.js", "w") as output_file:
+    with open("$(date +%Y%m%d%H%M%S)-domain_ips.js", "w") as output_file:
         for domain in domains:
             domain = domain.strip()
             a_records = get_a_records(domain)
