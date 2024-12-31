@@ -1,11 +1,11 @@
 name: dns_cf_push
 
 on:
-  push:
-    paths:
-      - ip.js
-  schedule:
-    - cron: '0 */2 * * *'
+  #push:
+    #paths:
+      #- ip.js
+  #schedule:
+    #- cron: '0 */2 * * *'
   workflow_dispatch:
 jobs:
   build:
