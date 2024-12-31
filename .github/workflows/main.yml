@@ -59,6 +59,17 @@ jobs:
 
     - name: Run script
       run: python ${{ github.workspace }}/collect_ips.py
+    
+
+    - name: 'run dnscf'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_DNS_NAME: ${{ secrets.CF_DNS_NAME }}
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python dnscf.py
         
     - name: Commit files
       run: |
