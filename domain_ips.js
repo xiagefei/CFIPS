@@ -31,27 +31,3 @@ Domain: m3u8.hmrvideo.com
 Domain: rutracker.org
 172.67.182.196
 104.21.32.39
-Domain: s8-e1.waytogone.com
-172.67.71.209
-104.26.3.159
-104.26.2.159
-Domain: s8-e1.timeprecei.com
-104.26.12.198
-172.67.70.65
-104.26.13.198
-Domain: s8-e1.deniest.com
-104.26.2.26
-172.67.72.165
-104.26.3.26
-Domain: s8-e1.bytwogeneral.com
-172.67.68.131
-104.26.11.14
-104.26.10.14
-Domain: s8-e1.bitwayeat.com
-104.26.8.56
-172.67.68.137
-104.26.9.56
-Domain: s1-a1.global-cdn.me
-172.67.71.137
-104.26.2.214
-104.26.3.214
