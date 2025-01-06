@@ -13,3 +13,4 @@ s8-e1.deniest.com
 s8-e1.bytwogeneral.com
 s8-e1.bitwayeat.com
 s1-a1.global-cdn.me
+s1-e1.pipecdn.vip
