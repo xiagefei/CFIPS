@@ -8,7 +8,7 @@ on:
     paths:
       - domain_ips.js
   schedule:
-    - cron: '0 7 */1 * *'
+    - cron: '0 */2 * * *'
   workflow_dispatch: # 允许手动触发
 
 jobs:
