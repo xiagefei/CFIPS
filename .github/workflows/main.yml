@@ -43,9 +43,9 @@ jobs:
       run: |
           sudo apt-get install jq
           # 获取最新的 ChromeDriver 版本及下载链接
-          LATEST_URL=$(curl -s https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json | \
-          jq -r '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64") | .url')
-
+          # LATEST_URL=$(curl -s https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json | \
+          # jq -r '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64") | .url')
+          
           # 使用 wget 下载
           wget -q -O /tmp/chromedriver-linux64.zip https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.264/linux64/chrome-linux64.zip
           cd /tmp
