@@ -47,7 +47,7 @@ jobs:
           jq -r '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64") | .url')
 
           # 使用 wget 下载
-          wget -q -O /tmp/chromedriver-linux64.zip "$LATEST_URL"
+          wget -q -O /tmp/chromedriver-linux64.zip https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.264/linux64/chrome-linux64.zip
 
           echo "Downloaded ChromeDriver from: $LATEST_URL"
           cd /tmp
