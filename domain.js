@@ -1,4 +1,3 @@
-32-cdn.livecdn.me
 rutracker.net
 abccdn.me
 33-cdn.cdnyysd.me
