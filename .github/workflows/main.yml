@@ -37,6 +37,7 @@ jobs:
         pip install beautifulsoup4==4.12.3
         pip install lxml==5.3.0
         pip install selenium==4.27.1
+        pip install webdriver-manager
 
 
     - name: Install ChromeDriver
