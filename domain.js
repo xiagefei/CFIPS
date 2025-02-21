@@ -108,3 +108,4 @@ s8-e1.deniest.com
 s8-e1.bytwogeneral.com
 s8-e1.bitwayeat.com
 s1-a1.global-cdn.me
+bestcf.030101.xyz
