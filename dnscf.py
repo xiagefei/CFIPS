@@ -3,6 +3,7 @@ import traceback
 import time
 import os
 import json
+import random  # 新增导入
 
 # API 密钥
 CF_API_TOKEN    =   os.environ["CF_API_TOKEN"]
@@ -83,15 +84,25 @@ def push_plus(content):
 def main():
     # 获取最新优选IP
     ip_addresses_str = get_cf_speed_test_ip()
+    if not ip_addresses_str:
+        print("无法获取IP地址")
+        return
     ip_addresses = ip_addresses_str.split()
+    if len(ip_addresses) < 2:
+        print("IP地址数量不足，至少需要两个IP")
+        return
     dns_records = get_dns_records(CF_DNS_NAME)
+    if not dns_records or len(dns_records) < 2:
+        print("DNS记录数量不足，至少需要两条记录")
+        return
+    # 随机选择两个不同的IP
+    selected_ips = random.sample(ip_addresses, 2)
     push_plus_content = []
-    # 遍历 IP 地址列表
-    for index, ip_address in enumerate(ip_addresses[:2]):
+    for index, ip_address in enumerate(selected_ips):
         # 执行 DNS 变更
         dns = update_dns_record(dns_records[index], CF_DNS_NAME, ip_address)
         push_plus_content.append(dns)
-
+    
     push_plus('\n'.join(push_plus_content))
 
 if __name__ == '__main__':
