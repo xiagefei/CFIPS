@@ -27,8 +27,12 @@ jobs:
     - name: Install dependencies
       run: |
         pip install dnspython  # 安装dnspython库，因为你的脚本依赖它
-        pip install requests
-
+        python -m pip install --upgrade pip
+        pip install requests==2.32.3
+        pip install beautifulsoup4==4.12.3
+        pip install lxml==5.3.0
+        pip install selenium==4.27.1
+        pip install webdriver-manager
     - name: Run script to get A records
       run: |
         python domain_ip.py  
