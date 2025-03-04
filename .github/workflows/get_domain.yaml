@@ -32,6 +32,9 @@ jobs:
     - name: Run script to get A records
       run: |
         python domain_ip.py  
+    - name: Run script to collect
+      run: |
+        python collect_ips.py
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
