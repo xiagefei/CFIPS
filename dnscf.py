@@ -88,11 +88,11 @@ def main():
         print("无法获取IP地址")
         return
     ip_addresses = ip_addresses_str.split()
-    if len(ip_addresses) < 2:
+    if len(ip_addresses) < 3:
         print("IP地址数量不足，至少需要两个IP")
         return
     dns_records = get_dns_records(CF_DNS_NAME)
-    if not dns_records or len(dns_records) < 2:
+    if not dns_records or len(dns_records) < 3:
         print("DNS记录数量不足，至少需要两条记录")
         return
     # 随机选择两个不同的IP
