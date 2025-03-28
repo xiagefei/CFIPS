@@ -147,5 +147,4 @@ log.bpminecraft.com
 www.boba88slot.com
 gur.gov.ua
 www.zsu.gov.ua
-www.iakeys.com
 fbi.gov
