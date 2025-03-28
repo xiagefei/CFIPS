@@ -96,7 +96,7 @@ def main():
         print("DNS记录数量不足，至少需要两条记录")
         return
     # 随机选择两个不同的IP
-    selected_ips = random.sample(ip_addresses, 2)
+    selected_ips = random.sample(ip_addresses, 3)
     push_plus_content = []
     for index, ip_address in enumerate(selected_ips):
         # 执行 DNS 变更
