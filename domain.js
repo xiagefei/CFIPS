@@ -160,4 +160,3 @@ cloudflare.9jy.cc
 cname.xirancdn.us
 8.889288.xyz
 cf.877771.xyz
-dns.cloudflare.182682.xyz
