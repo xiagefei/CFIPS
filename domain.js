@@ -96,7 +96,6 @@ ae.visamiddleeast.com
 km.visamiddleeast.com
 rutracker.net
 abccdn.me
-33-cdn.cdnyysd.me
 poki.com
 6tm.wdubo.com
 m8t.vboku.com
