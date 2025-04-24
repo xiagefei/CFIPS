@@ -158,3 +158,7 @@ cf.zhetengsha.eu.org
 cname.xirancdn.us
 8.889288.xyz
 cf.877771.xyz
+region1.v2.argotunnel.com
+region2.v2.argotunnel.com
+us-region1.v2.argotunnel.com
+us-region2.v2.argotunnel.com
