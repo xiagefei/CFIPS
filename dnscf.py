@@ -103,7 +103,7 @@ def main():
         dns = update_dns_record(dns_records[index], CF_DNS_NAME, ip_address)
         push_plus_content.append(dns)
     
-    #push_plus('\n'.join(push_plus_content))
+    push_plus('\n'.join(push_plus_content))
 
 if __name__ == '__main__':
     main()
