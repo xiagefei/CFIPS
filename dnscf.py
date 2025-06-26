@@ -92,11 +92,11 @@ def main():
         print("IP地址数量不足，至少需要两个IP")
         return
     dns_records = get_dns_records(CF_DNS_NAME)
-    if not dns_records or len(dns_records) < 2:
+    if not dns_records or len(dns_records) < 5:
         print("DNS记录数量不足，至少需要两条记录")
         return
     # 随机选择两个不同的IP
-    selected_ips = random.sample(ip_addresses, 2)
+    selected_ips = random.sample(ip_addresses, 5)
     push_plus_content = []
     for index, ip_address in enumerate(selected_ips):
         # 执行 DNS 变更
