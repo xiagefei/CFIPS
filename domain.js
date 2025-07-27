@@ -15,3 +15,4 @@ japan.com
 malaysia.com
 russia.com
 singapore.com
+s8-e1.uutestc.com
