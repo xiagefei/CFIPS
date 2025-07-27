@@ -108,8 +108,6 @@ s8-e1.bytwogeneral.com
 s8-e1.bitwayeat.com
 s1-a1.global-cdn.me
 bestcf.030101.xyz
-time.cloudflare.com
-shopify.com
 time.is
 icook.hk
 icook.tw
@@ -156,7 +154,6 @@ speed.marisalnc.com
 cf.zhetengsha.eu.org
 cname.xirancdn.us
 8.889288.xyz
-cf.877771.xyz
 region1.v2.argotunnel.com
 region2.v2.argotunnel.com
 us-region1.v2.argotunnel.com
