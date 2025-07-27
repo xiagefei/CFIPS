@@ -16,4 +16,4 @@ malaysia.com
 russia.com
 singapore.com
 s8-e1.uutestc.com
-sss10-e1.pipecdn.vipvendtime=1753834999&vhash=LU1Q6QgbHn96bLzK6CB2AxMwOJ_7VGO7jyxmOj2PxiE=&vCustomParameter=128885920_104.28.196.75_US_0_0&lb=a8a2a6e7b70b17255b8d7b385c667861
+sss10-e1.pipecdn.vip
