@@ -4,3 +4,7 @@ dogechain.info
 www.whoer.net
 www.whatismyip.com
 www.hugedomains.com
+japan.com
+malaysia.com
+russia.com
+singapore.com
