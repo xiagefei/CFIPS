@@ -1,53 +1,42 @@
 import re
 import os
-import selenium
-import lxml
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-
-service = Service(ChromeDriverManager().install())
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--disable-dev-shm-usage')
-chromedriver = "/usr/local/bin/chromedriver"
-os.environ["webdriver.chrome.driver"] = chromedriver
+import requests  # 使用 requests 替代 selenium 更高效
 
 # 目标 URL 列表
 urls = [
-'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.js'
-#'https://raw.githubusercontent.com/leung7963/CFIPS/main/myip.js'
-#'https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt'
+    'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.js'
 ]
 
 # 正则表达式用于匹配 IP 地址
 ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
 
-# 检查 ip.txt 文件是否存在，如果存在则删除它
+# 检查 ip.js 文件是否存在，如果存在则删除它
 if os.path.exists('ip.js'):
     os.remove('ip.js')
 
-# 创建一个文件来存储 IP 地址
-with open('ip.js', 'w') as file:
-    # 设置浏览器驱动
-    driver = webdriver.Chrome(options=chrome_options)
-    all_ips = []
-    for url in urls:
-        # 打开网页
-        driver.get(url)
-        # 获取页面源代码
-        page_source = driver.page_source
+all_ips = []
+for url in urls:
+    try:
+        # 使用 requests 获取内容
+        response = requests.get(url)
+        response.raise_for_status()  # 检查请求是否成功
+        
         # 使用正则表达式查找 IP 地址
-        ip_matches = re.findall(ip_pattern, page_source)
+        ip_matches = re.findall(ip_pattern, response.text)
         all_ips.extend(ip_matches)
-    driver.quit()
+    except Exception as e:
+        print(f"处理 {url} 时出错: {e}")
 
-unique_ips = list(set(all_ips))
+# 过滤出以172开头的IP并去重
+filtered_ips = set()
+for ip in all_ips:
+    # 检查IP第一段是否为172
+    if ip.startswith('172.'):
+        filtered_ips.add(ip)
+
+# 将结果写入文件
 with open('ip.js', 'w') as file:
-    for ip in unique_ips:
+    for ip in filtered_ips:
         file.write(ip + '\n')
 
-print('IP 地址已去重并保存到 ip.js 文件中。')
+print(f'已保存 {len(filtered_ips)} 个172开头的IP地址到 ip.js 文件。')
