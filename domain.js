@@ -5,12 +5,6 @@ www.whoer.net
 www.whatismyip.com
 www.hugedomains.com
 m3u8.hmrvideo.com
-s8-e1.waytogone.com
-s8-e1.timeprecei.com
-s8-e1.deniest.com
-s8-e1.bytwogeneral.com
-s8-e1.bitwayeat.com
-s1-a1.global-cdn.me
 japan.com
 malaysia.com
 russia.com
@@ -18,7 +12,5 @@ singapore.com
 s8-e1.uutestc.com
 chain.so
 block.io
-s10-e1.etcbbz.xyz
-s10-e1.tfbgzzz.com
-s10-e1.etcbbz.xyz
-s10-e1.tfbgzzz.com
+nrtcfdns.zone.id
+cmcc.cloudflare.182682.xyz
