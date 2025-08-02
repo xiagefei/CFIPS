@@ -18,8 +18,7 @@ singapore.com
 s8-e1.uutestc.com
 chain.so
 block.io
-s10-e1.etcbbi.xyz
-s10-e1.tfbgaaa.com
-s10-e1.etcbbj.xyz
-s10-e1.tfbgbbb.com
-s10-e1.tfbgccc.com
+s10-e1.etcbbz.xyz
+s10-e1.tfbgzzz.com
+s10-e1.etcbbz.xyz
+s10-e1.tfbgzzz.com
