@@ -12,4 +12,5 @@ singapore.com
 chain.so
 block.io
 nrtcfdns.zone.id
-cmcc.cloudflare.182682.xyz
+cloudflare.182682.xyz
+cf.090227.xyz
