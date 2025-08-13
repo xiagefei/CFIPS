@@ -15,3 +15,4 @@ nrtcfdns.zone.id
 cloudflare.182682.xyz
 cf.090227.xyz
 s10-e1.uutesto.com
+s8-e1.uutestl.com
