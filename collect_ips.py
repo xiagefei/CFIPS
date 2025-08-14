@@ -1,6 +1,6 @@
 import re
 import os
-import requests  # 使用 requests 替代 selenium 更高效
+import requests
 
 # 目标 URL 列表
 urls = [
@@ -27,11 +27,11 @@ for url in urls:
     except Exception as e:
         print(f"处理 {url} 时出错: {e}")
 
-# 过滤出以172开头的IP并去重
+# 过滤出以172或162开头的IP并去重
 filtered_ips = set()
 for ip in all_ips:
-    # 检查IP第一段是否为172
-    if ip.startswith('172.'):
+    # 检查IP是否以172或162开头
+    if ip.startswith('172.') or ip.startswith('162.'):
         filtered_ips.add(ip)
 
 # 将结果写入文件
@@ -39,4 +39,4 @@ with open('ip.js', 'w') as file:
     for ip in filtered_ips:
         file.write(ip + '\n')
 
-print(f'已保存 {len(filtered_ips)} 个172开头的IP地址到 ip.js 文件。')
+print(f'已保存 {len(filtered_ips)} 个172和162开头的IP地址到 ip.js 文件。')
