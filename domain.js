@@ -18,3 +18,4 @@ s10-e1.uutesto.com
 s8-e1.uutestl.com
 s8-e1.uutestc.com
 s10-e1.uutesta.com
+sm.ms
