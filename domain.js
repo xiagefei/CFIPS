@@ -22,3 +22,7 @@ sm.ms
 s6-e1.uutesth.com
 s1-a1.global-cdn.me
 s6-e1.uutestg.com
+s6-e1.uuteste.com
+s6-e1.uutesti.com
+s6-e1.uutestj.com
+s6-e1.uutestk.com
