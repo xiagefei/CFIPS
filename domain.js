@@ -20,3 +20,4 @@ s8-e1.uutestc.com
 s10-e1.uutesta.com
 sm.ms
 s6-e1.uutesth.com
+s1-a1.global-cdn.me
