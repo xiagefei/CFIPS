@@ -5,7 +5,6 @@ m3u8.hmrvideo.com
 chain.so
 block.io
 nrtcfdns.zone.id
-cloudflare.182682.xyz
 cf.090227.xyz
 s6-e1.uutesta.com
 s6-e1.uutestb.com
@@ -33,5 +32,4 @@ s6-e1.uutestw.com
 s6-e1.uutestx.com
 s6-e1.uutesty.com
 s6-e1.uutestz.com
-sm.ms
 s1-a1.global-cdn.me
