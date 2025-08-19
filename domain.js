@@ -66,7 +66,7 @@ s6-e1.tfboyaac.com
 s6-e1.tfboyaad.com
 s6-e1.tfboyaae.com
 s6-e1.tfboyaaf.com
-s6-e1.tfboyaag.com
+s8-e1.tfboyaag.com
 s6-e1.tfboyaah.com
 s6-e1.tfboyaai.com
 s6-e1.tfboyaaj.com
