@@ -1,11 +1,3 @@
-ip.sb
-time.is
-dogechain.info
-m3u8.hmrvideo.com
-chain.so
-block.io
-nrtcfdns.zone.id
-cf.090227.xyz
 s6-e1.uutesta.com
 s6-e1.uutestb.com
 s6-e1.uutestc.com
