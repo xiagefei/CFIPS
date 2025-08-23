@@ -77,3 +77,8 @@ s6-e1.tfboyaaw.com
 s6-e1.tfboyaax.com
 s6-e1.tfboyaay.com
 s6-e1.tfboyaaz.com
+s8-e1.cloudcook.vip
+s8-e1.cloudios.vip
+s8-e1.cloudmac.vip
+s8-e1.dentisest.com
+s8-e1.doaminwhole.com
