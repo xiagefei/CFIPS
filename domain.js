@@ -1,5 +1,4 @@
 ip.sb
-ip.gs
 time.is
 s6-e1.uutesta.com
 s6-e1.uutestb.com
