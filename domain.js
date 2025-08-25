@@ -1,5 +1,6 @@
 ip.sb
 time.is
+ip.skk.moe
 s6-e1.uutesta.com
 s6-e1.uutestb.com
 s6-e1.uutestc.com
