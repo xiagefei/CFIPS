@@ -7,8 +7,8 @@ on:
   push:
     paths:
       - domain.js
-  schedule:
-    - cron: '0 6 */1 * *'
+  #schedule:
+    #- cron: '0 6 */1 * *'
   workflow_dispatch:
 
 jobs:
