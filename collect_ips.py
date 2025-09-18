@@ -20,7 +20,7 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 urls = [
 #'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.js',
 'https://addressesapi.090227.xyz/cloudFlareYes',
-#'https://addressesapi.090227.xyz/ip.164746.xyz',
+'https://addressesapi.090227.xyz/ip.164746.xyz',
 #'https://addressesapi.090227.xyz/ct',
 #'https://addressesapi.090227.xyz/cmcc',
 #'https://www.wetest.vip/page/cloudflare/total_v4.html'
