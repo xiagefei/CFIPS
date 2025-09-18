@@ -19,8 +19,8 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 # 目标 URL 列表
 urls = [
 #'https://raw.githubusercontent.com/leung7963/CFIPS/main/domain_ips.js',
-'https://stock.hostmonit.com/CloudFlareYes'
-'https://addressesapi.090227.xyz/ip.164746.xyz'
+'https://stock.hostmonit.com/cloudFlareYes',
+'https://addressesapi.090227.xyz/ip.164746.xyz',
 'https://www.wetest.vip/page/cloudflare/total_v4.html'
 ]
 
