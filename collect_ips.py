@@ -24,7 +24,6 @@ urls = [
 'https://www.wetest.vip/page/cloudflare/address_v4.html',
 'https://api.uouin.com/cloudflare.html',
 'https://665966.xyz/030101-bestcf.txt',
-'https://665966.xyz/030101-bestproxy.txt',
 'https://665966.xyz/164746.txt',
 'https://665966.xyz/CloudFlareYes.txt',
 'https://665966.xyz/cf090227xyz.txt',
