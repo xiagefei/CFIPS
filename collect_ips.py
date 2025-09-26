@@ -22,7 +22,15 @@ urls = [
 'https://cf.090227.xyz/',
 'https://www.wetest.vip/page/cloudflare/total_v4.html',
 'https://www.wetest.vip/page/cloudflare/address_v4.html',
-'https://api.uouin.com/cloudflare.html'
+'https://api.uouin.com/cloudflare.html',
+'https://665966.xyz/030101-bestcf.txt',
+'https://665966.xyz/030101-bestproxy.txt',
+'https://665966.xyz/164746.txt',
+'https://665966.xyz/CloudFlareYes.txt',
+'https://665966.xyz/cf090227xyz.txt',
+'https://665966.xyz/haogege.txt',
+'https://665966.xyz/uouin-cloudflare.txt',
+'https://665966.xyz/wetest-cloudflare-v4.txt'
 ]
 
 # 正则表达式用于匹配 IP 地址
