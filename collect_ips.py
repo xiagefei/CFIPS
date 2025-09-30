@@ -23,7 +23,8 @@ urls = [
 'https://addressesapi.090227.xyz/ip.164746.xyz',
 'https://www.wetest.vip/page/cloudflare/total_v4.html',
 'https://www.wetest.vip/page/cloudflare/address_v4.html',
-'https://api.uouin.com/cloudflare.html'
+'https://api.uouin.com/cloudflare.html',
+'https://addressesapi.090227.xyz/CloudFlareYes'
 ]
 
 # 正则表达式用于匹配 IP 地址
