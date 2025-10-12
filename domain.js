@@ -86,3 +86,4 @@ s8-e1.cloudmac.vip
 s8-e1.dentisest.com
 s8-e1.doaminwhole.com
 bestcfv4.030101.xyz
+mfa.gov.ua
