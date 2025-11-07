@@ -28,8 +28,6 @@ jobs:
       run: |
         pip install dnspython  # 安装dnspython库，因为你的脚本依赖它
         python -m pip install --upgrade pip
-        pip install libxml2
-        pip install libxslt
         pip install requests
         pip install beautifulsoup4
         pip install lxml
