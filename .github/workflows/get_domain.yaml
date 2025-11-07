@@ -28,8 +28,13 @@ jobs:
       run: |
         pip install dnspython  # 安装dnspython库，因为你的脚本依赖它
         python -m pip install --upgrade pip
-        pip install requests==2.32.3
-        pip install selenium==4.27.1
+        pip install libxml2
+        pip install libxslt
+        pip install requests
+        pip install beautifulsoup4
+        pip install lxml
+        pip install selenium
+        pip install webdriver-manager
     - name: Run script to get A records
       run: |
         python domain_ip.py  
