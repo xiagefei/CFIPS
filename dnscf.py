@@ -30,7 +30,7 @@ def get_cf_speed_test_ip():
         ip_list = response.text.strip().split()  # 获取所有IP列表
         
         # 随机选择5个IP（如果IP数量不足5个则选择全部）
-        return random.sample(ip_list, min(2, len(ip_list))) if ip_list else None
+        return random.sample(ip_list, min(5, len(ip_list))) if ip_list else None
     except Exception as e:
         traceback.print_exc()
         print(f"从URL获取IP失败: {e}")
