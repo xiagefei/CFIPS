@@ -1,4 +1,4 @@
-name: Update IP List
+name: CFIP UPDATE
 
 permissions:
   contents: write
