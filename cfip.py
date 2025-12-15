@@ -15,7 +15,7 @@ CHAT_ID = os.environ.get("CHAT_ID", "")
 
 def get_cloudflare_ips():
     """从Cloudflare获取IPv4地址范围"""
-    url = "https://www.cloudflare.com/ips-v4/"
+    url = "https://raw.githubusercontent.com/leung7963/CFIPS/main/cfasn"
     
     try:
         response = requests.get(url, timeout=10)
