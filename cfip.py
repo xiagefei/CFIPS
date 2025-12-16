@@ -20,7 +20,7 @@ REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", "5"))
 
 def get_cloudflare_ips():
     """从Cloudflare获取IPv4地址范围"""
-    url = "https://raw.githubusercontent.com/leung7963/CFIPS/main/cfasn"
+    url = "https://www.cloudflare.com/ips-v4/"
     
     try:
         response = requests.get(url, timeout=10)
