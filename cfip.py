@@ -150,7 +150,7 @@ def generate_and_test_ips(num_ips=5, is_ipv6=False):
     attempted_ips = {}
     # 记录总尝试次数
     total_attempts = 0
-    max_total_attempts = num_ips * 20  # 防止无限循环
+    max_total_attempts = num_ips * 10  # 防止无限循环
     
     while len(qualified_ips) < num_ips and total_attempts < max_total_attempts:
         # 随机选择一个CIDR范围
