@@ -5,7 +5,6 @@ import traceback
 import time
 import os
 import json
-import urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # 环境变量读取
@@ -20,8 +19,6 @@ MAX_RETRY_ATTEMPTS = int(os.environ.get("MAX_RETRY_ATTEMPTS", "5"))
 REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", "5"))
 GENERATE_IPV6 = os.environ.get("GENERATE_IPV6", "true").lower() == "true"
 IPV6_COUNT = int(os.environ.get("IPV6_COUNT", "5"))
-USE_HTTPSTATUS_API = os.environ.get("USE_HTTPSTATUS_API", "false").lower() == "true"
-HTTPSTATUS_API_KEY = os.environ.get("HTTPSTATUS_API_KEY", "")
 
 def get_cloudflare_ips():
     """从Cloudflare获取IPv4和IPv6地址范围"""
@@ -89,8 +86,8 @@ def generate_random_ip_from_cidr(cidr, is_ipv6=False):
         print(f"从CIDR {cidr} 生成IP失败: {e}")
         return None
 
-def test_ip_directly(ip_address, test_url_template, expected_status_code=403):
-    """直接测试IP地址是否返回指定状态码"""
+def test_ip_status(ip_address, test_url_template, expected_status_code=403):
+    """测试IP地址是否返回指定状态码"""
     try:
         # 判断是否为IPv6地址
         try:
@@ -117,116 +114,20 @@ def test_ip_directly(ip_address, test_url_template, expected_status_code=403):
         )
         
         status_code = response.status_code
-        print(f"直接测试 IP {ip_address}: 状态码 {status_code}, URL: {test_url}")
+        print(f"测试 IP {ip_address}: 状态码 {status_code}, URL: {test_url}")
         
         # 检查是否为期望的状态码
         return status_code == expected_status_code, status_code, response.reason, is_ipv6
         
     except requests.exceptions.Timeout:
-        print(f"直接测试 IP {ip_address}: 请求超时")
+        print(f"测试 IP {ip_address}: 请求超时")
         return False, 0, "Timeout", False
     except requests.exceptions.ConnectionError:
-        print(f"直接测试 IP {ip_address}: 连接错误")
+        print(f"测试 IP {ip_address}: 连接错误")
         return False, 0, "Connection Error", False
     except Exception as e:
-        print(f"直接测试 IP {ip_address} 时发生异常: {e}")
+        print(f"测试 IP {ip_address} 时发生异常: {e}")
         return False, 0, str(e), False
-
-def test_ip_via_httpstatus_api(ip_address, test_url_template, expected_status_code=403):
-    """使用api.httpstatus.io测试IP地址是否返回指定状态码"""
-    try:
-        # 判断是否为IPv6地址
-        try:
-            ip_obj = ipaddress.ip_address(ip_address)
-            is_ipv6 = ip_obj.version == 6
-        except:
-            is_ipv6 = ':' in ip_address
-        
-        # 构建测试URL
-        if is_ipv6:
-            # IPv6地址在URL中需要用方括号括起来
-            original_url = test_url_template.format(ip=f"[{ip_address}]")
-        else:
-            original_url = test_url_template.format(ip=ip_address)
-        
-        # 对URL进行编码
-        encoded_url = urllib.parse.quote(original_url, safe='')
-        
-        # 构建api.httpstatus.io的请求URL
-        api_url = f"https://api.httpstatus.io/v1/status"
-        
-        # 构建请求参数
-        params = {
-            'url': original_url,
-            'statusCode': expected_status_code
-        }
-        
-        # 如果有API密钥，添加到headers中
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
-        
-        if HTTPSTATUS_API_KEY:
-            headers['Authorization'] = f'Bearer {HTTPSTATUS_API_KEY}'
-        
-        # 发送请求到api.httpstatus.io
-        response = requests.get(
-            api_url,
-            params=params,
-            headers=headers,
-            timeout=REQUEST_TIMEOUT + 5  # 给API额外的时间
-        )
-        
-        print(f"API测试 IP {ip_address}: API响应状态码 {response.status_code}")
-        
-        if response.status_code == 200:
-            result = response.json()
-            
-            # api.httpstatus.io返回的数据结构
-            # 成功时返回: {"match": true, "status": 403, "url": "http://[IP]/"}
-            # 不匹配时返回: {"match": false, "status": 200, "url": "http://[IP]/"}
-            
-            match = result.get('match', False)
-            actual_status = result.get('status', 0)
-            
-            if match:
-                print(f"API测试 IP {ip_address}: 匹配成功，状态码 {actual_status}")
-                return True, actual_status, "Match", is_ipv6
-            else:
-                print(f"API测试 IP {ip_address}: 不匹配，实际状态码 {actual_status}")
-                return False, actual_status, f"Not match (got {actual_status})", is_ipv6
-        else:
-            print(f"API测试 IP {ip_address}: API请求失败，状态码 {response.status_code}")
-            return False, response.status_code, f"API request failed", is_ipv6
-            
-    except requests.exceptions.Timeout:
-        print(f"API测试 IP {ip_address}: 请求超时")
-        return False, 0, "Timeout", False
-    except requests.exceptions.ConnectionError:
-        print(f"API测试 IP {ip_address}: 连接错误")
-        return False, 0, "Connection Error", False
-    except Exception as e:
-        print(f"API测试 IP {ip_address} 时发生异常: {e}")
-        return False, 0, str(e), False
-
-def test_ip_status(ip_address, test_url_template, expected_status_code=403):
-    """测试IP地址是否返回指定状态码（根据配置选择测试方式）"""
-    try:
-        ip_obj = ipaddress.ip_address(ip_address)
-        is_ipv6 = ip_obj.version == 6
-    except:
-        is_ipv6 = ':' in ip_address
-    
-    # 判断是否使用api.httpstatus.io
-    # 规则: 
-    # 1. 如果明确要求使用API (USE_HTTPSTATUS_API=true) 或者 
-    # 2. 测试的是IPv6地址且没有明确禁止使用API
-    use_api = USE_HTTPSTATUS_API or (is_ipv6 and not os.environ.get("DISABLE_HTTPSTATUS_API", "false").lower() == "true")
-    
-    if use_api:
-        return test_ip_via_httpstatus_api(ip_address, test_url_template, expected_status_code)
-    else:
-        return test_ip_directly(ip_address, test_url_template, expected_status_code)
 
 def generate_and_test_ips(num_ips=5, is_ipv6=False):
     """生成并测试IP地址，确保返回指定状态码"""
@@ -242,10 +143,6 @@ def generate_and_test_ips(num_ips=5, is_ipv6=False):
     
     print(f"获取到 {len(cidrs)} 个{cidr_type} CIDR范围")
     print(f"测试配置: 期望状态码={EXPECTED_STATUS_CODE}, URL模板={TEST_URL_TEMPLATE}")
-    if USE_HTTPSTATUS_API or (is_ipv6 and not os.environ.get("DISABLE_HTTPSTATUS_API", "false").lower() == "true"):
-        print(f"测试方式: 使用 api.httpstatus.io API")
-    else:
-        print(f"测试方式: 直接测试")
     
     # 存储符合条件的IP地址
     qualified_ips = []
@@ -515,7 +412,6 @@ def main():
     print(f"  - 最大重试次数: {MAX_RETRY_ATTEMPTS}")
     print(f"  - 请求超时: {REQUEST_TIMEOUT}秒")
     print(f"  - 生成IPv6: {GENERATE_IPV6}")
-    print(f"  - 使用httpstatus API: {USE_HTTPSTATUS_API}")
     if GENERATE_IPV6:
         print(f"  - IPv6数量: {IPV6_COUNT}")
     
@@ -615,15 +511,14 @@ def main():
         push_content.insert(0, f"**Cloudflare IP优选结果**")
         push_content.insert(1, f"更新时间: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
         push_content.insert(2, f"测试配置: 期望状态码={EXPECTED_STATUS_CODE}")
-        push_content.insert(3, f"测试方式: {'API' if USE_HTTPSTATUS_API else '直接测试'}")
         
         if generated_ipv4:
-            push_content.insert(4, f"生成的IPv4地址: {', '.join(generated_ipv4[:10])}")
+            push_content.insert(3, f"生成的IPv4地址: {', '.join(generated_ipv4[:10])}")
             if len(generated_ipv4) > 10:
-                push_content.insert(5, f"更多IPv4地址已保存到文件")
+                push_content.insert(4, f"更多IPv4地址已保存到文件")
         
         if generated_ipv6:
-            ipv6_index = 5 if generated_ipv4 else 4
+            ipv6_index = 4 if generated_ipv4 else 3
             push_content.insert(ipv6_index, f"生成的IPv6地址: {', '.join(generated_ipv6[:5])}")
             if len(generated_ipv6) > 5:
                 push_content.insert(ipv6_index + 1, f"更多IPv6地址已保存到文件")
