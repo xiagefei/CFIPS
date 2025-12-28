@@ -23,7 +23,7 @@ IPV6_COUNT = int(os.environ.get("IPV6_COUNT", "5"))
 def get_cloudflare_ips():
     """从Cloudflare获取IPv4和IPv6地址范围"""
     ipv4_url = "https://www.cloudflare.com/ips-v4/"
-    ipv6_url = "https://raw.githubusercontent.com/leung7963/CFIPS/main/cfipv6"
+    ipv6_url = "https://www.cloudflare.com/ips-v6/"
     
     ipv4_cidrs = []
     ipv6_cidrs = []
