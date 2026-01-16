@@ -271,7 +271,6 @@ def create_dns_record(name, ip_address, record_type='A', ttl=86400):
         'type': record_type,
         'name': name,
         'content': ip_address,
-        'ttl': ttl,
         'proxied': False  # 默认开启代理
     }
 
