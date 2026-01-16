@@ -18,8 +18,8 @@ EXPECTED_STATUS_CODE = int(os.environ.get("EXPECTED_STATUS_CODE", "403"))
 MAX_RETRY_ATTEMPTS = int(os.environ.get("MAX_RETRY_ATTEMPTS", "5"))
 REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", "5"))
 GENERATE_IPV6 = os.environ.get("GENERATE_IPV6", "true").lower() == "true"
-IPV4_COUNT = 2  
-IPV6_COUNT = 2  
+IPV4_COUNT = 5
+IPV6_COUNT = 5
 
 def get_cloudflare_ips():
     """从Cloudflare获取IPv4和IPv6地址范围"""
