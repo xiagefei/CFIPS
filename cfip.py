@@ -129,7 +129,7 @@ def test_ip_status(ip_address, test_url_template, expected_status_code=403):
         print(f"测试 IP {ip_address} 时发生异常: {e}")
         return False, 0, str(e), False
 
-def generate_and_test_ips(num_ips=10 is_ipv6=False):
+def generate_and_test_ips(num_ips=10, is_ipv6=False):
     """生成并测试IP地址，确保返回指定状态码"""
     cidr_type = "IPv6" if is_ipv6 else "IPv4"
     print(f"正在获取Cloudflare {cidr_type}地址范围...")
