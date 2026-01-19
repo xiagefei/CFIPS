@@ -18,7 +18,7 @@ EXPECTED_STATUS_CODE = int(os.environ.get("EXPECTED_STATUS_CODE", "403"))
 MAX_RETRY_ATTEMPTS = int(os.environ.get("MAX_RETRY_ATTEMPTS", "5"))
 REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", "5"))
 GENERATE_IPV6 = os.environ.get("GENERATE_IPV6", "true").lower() == "true"
-IPV6_COUNT = int(os.environ.get("IPV6_COUNT", "5"))
+IPV6_COUNT = int(os.environ.get("IPV6_COUNT", "10"))
 
 def get_cloudflare_ips():
     """从Cloudflare获取IPv4和IPv6地址范围"""
@@ -129,7 +129,7 @@ def test_ip_status(ip_address, test_url_template, expected_status_code=403):
         print(f"测试 IP {ip_address} 时发生异常: {e}")
         return False, 0, str(e), False
 
-def generate_and_test_ips(num_ips=5, is_ipv6=False):
+def generate_and_test_ips(num_ips=10 is_ipv6=False):
     """生成并测试IP地址，确保返回指定状态码"""
     cidr_type = "IPv6" if is_ipv6 else "IPv4"
     print(f"正在获取Cloudflare {cidr_type}地址范围...")
@@ -207,7 +207,7 @@ def generate_and_test_ips(num_ips=5, is_ipv6=False):
     
     return qualified_ips
 
-def generate_random_ips_with_retry(num_ips=5, is_ipv6=False):
+def generate_random_ips_with_retry(num_ips=10, is_ipv6=False):
     """生成指定数量的随机IP地址，如果不符合要求则重试"""
     return generate_and_test_ips(num_ips, is_ipv6)
 
@@ -434,7 +434,7 @@ def main():
         print("将只生成IP列表，不更新DNS记录")
     
     # 生成并测试IPv4地址
-    num_ipv4 = max(5, len(a_records)) if a_records else 5
+    num_ipv4 = max(10, len(a_records)) if a_records else 10
     print(f"\n正在生成并测试 {num_ipv4} 个IPv4地址...")
     print(f"要求IP地址返回状态码: {EXPECTED_STATUS_CODE}")
     
@@ -502,7 +502,7 @@ def main():
         # 如果没有AAAA记录但有IPv6地址，创建新的AAAA记录
         if not aaaa_records and generated_ipv6:
             print(f"创建新的AAAA记录...")
-            for ip_address in generated_ipv6[:5]:  # 最多创建5个AAAA记录
+            for ip_address in generated_ipv6[:10]:  # 最多创建5个AAAA记录
                 result = create_dns_record(CF_DNS_NAME, ip_address, 'AAAA')
                 push_content.append(result)
         
@@ -518,8 +518,8 @@ def main():
         
         if generated_ipv6:
             ipv6_index = 4 if generated_ipv4 else 3
-            push_content.insert(ipv6_index, f"生成的IPv6地址: {', '.join(generated_ipv6[:5])}")
-            if len(generated_ipv6) > 5:
+            push_content.insert(ipv6_index, f"生成的IPv6地址: {', '.join(generated_ipv6[:10])}")
+            if len(generated_ipv6) > 10:
                 push_content.insert(ipv6_index + 1, f"更多IPv6地址已保存到文件")
         
         # 发送推送通知
