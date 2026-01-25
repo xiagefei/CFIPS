@@ -509,7 +509,7 @@ def main():
         if generated_ipv6 and GENERATE_IPV6:
             print(f"创建AAAA记录...")
             # 限制创建的AAAA记录数量，避免过多
-            max_aaaa_records = min(5, len(generated_ipv6))
+            max_aaaa_records = min(10, len(generated_ipv6))
             for i in range(max_aaaa_records):
                 ip_address = generated_ipv6[i]
                 result = create_dns_record(CF_DNS_NAME, ip_address, 'AAAA')
