@@ -244,6 +244,43 @@ def get_dns_records(name, record_type=None):
         print(f"获取DNS记录失败: {e}")
     return []
 
+def delete_dns_record(record_id):
+    """删除 DNS 记录"""
+    if not CF_API_TOKEN or not CF_ZONE_ID:
+        print("缺少必要的环境变量")
+        return False, "删除失败: 缺少API配置"
+    
+    headers = {
+        'Authorization': f'Bearer {CF_API_TOKEN}',
+        'Content-Type': 'application/json'
+    }
+    
+    url = f'https://api.cloudflare.com/client/v4/zones/{CF_ZONE_ID}/dns_records/{record_id}'
+
+    try:
+        response = requests.delete(url, headers=headers)
+
+        if response.status_code == 200:
+            result = response.json()
+            if result.get('success'):
+                print(f"DNS删除成功: ---- 时间: " + str(
+                    time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + f" ---- 记录ID: {record_id}")
+                return True, f"记录ID: {record_id} 删除成功"
+            else:
+                errors = result.get('errors', [])
+                error_msg = ', '.join([str(err) for err in errors])
+                print(f"DNS删除失败: ---- 时间: " + str(
+                    time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + f" ---- 错误信息: {error_msg}")
+                return False, f"记录ID: {record_id} 删除失败: {error_msg}"
+        else:
+            print(f"DNS删除失败: ---- 时间: " + str(
+                time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + " ---- 错误信息: " + str(response.text))
+            return False, f"记录ID: {record_id} 删除失败"
+    except Exception as e:
+        traceback.print_exc()
+        print(f"DNS删除异常: {e}")
+        return False, f"记录ID: {record_id} 删除异常"
+
 def create_dns_record(name, ip_address, record_type='A', ttl=86400):
     """创建 DNS 记录"""
     if not CF_API_TOKEN or not CF_ZONE_ID:
@@ -298,58 +335,40 @@ def create_dns_record(name, ip_address, record_type='A', ttl=86400):
         print(f"DNS创建异常: {e}")
         return f"{record_type}记录: {ip_address} 解析 {name} 异常"
 
-def update_dns_record(record_id, name, ip_address, record_type='A', ttl=86400):
-    """更新 DNS 记录"""
-    if not CF_API_TOKEN or not CF_ZONE_ID:
+def delete_all_dns_records(name, record_type=None):
+    """删除指定域名的所有DNS记录或特定类型的记录"""
+    if not CF_API_TOKEN or not CF_ZONE_ID or not name:
         print("缺少必要的环境变量")
-        return "更新失败: 缺少API配置"
+        return [], "删除失败: 缺少API配置"
     
-    # 检查IP地址类型是否匹配记录类型
-    try:
-        ip_obj = ipaddress.ip_address(ip_address)
-        if record_type == 'A' and ip_obj.version != 4:
-            return f"IP地址 {ip_address} 不是IPv4地址，无法更新A记录"
-        elif record_type == 'AAAA' and ip_obj.version != 6:
-            return f"IP地址 {ip_address} 不是IPv6地址，无法更新AAAA记录"
-    except ValueError:
-        return f"IP地址 {ip_address} 格式无效"
+    print(f"开始删除 {name} 的DNS记录" + (f"（类型: {record_type}）" if record_type else ""))
+    
+    # 获取要删除的记录
+    records_to_delete = get_dns_records(name, record_type)
+    
+    if not records_to_delete:
+        print(f"没有找到 {name} 的DNS记录" + (f"（类型: {record_type}）" if record_type else ""))
+        return [], f"没有找到 {name} 的DNS记录"
+    
+    delete_results = []
+    deleted_count = 0
+    
+    for record in records_to_delete:
+        record_id = record['id']
+        record_type = record['type']
+        record_content = record['content']
         
-    headers = {
-        'Authorization': f'Bearer {CF_API_TOKEN}',
-        'Content-Type': 'application/json'
-    }
+        success, message = delete_dns_record(record_id)
+        delete_results.append(message)
+        
+        if success:
+            deleted_count += 1
+            print(f"已删除 {record_type} 记录: {record_content}")
     
-    url = f'https://api.cloudflare.com/client/v4/zones/{CF_ZONE_ID}/dns_records/{record_id}'
-    data = {
-        'type': record_type,
-        'name': name,
-        'content': ip_address,
-        'proxied': False  # 默认开启代理
-    }
-
-    try:
-        response = requests.put(url, headers=headers, json=data)
-
-        if response.status_code == 200:
-            result = response.json()
-            if result.get('success'):
-                print(f"DNS更新成功: ---- 时间: " + str(
-                    time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + f" ---- {record_type}记录：{ip_address}")
-                return f"{record_type}记录: {ip_address} 解析 {name} 成功"
-            else:
-                errors = result.get('errors', [])
-                error_msg = ', '.join([str(err) for err in errors])
-                print(f"DNS更新失败: ---- 时间: " + str(
-                    time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + f" ---- 错误信息: {error_msg}")
-                return f"{record_type}记录: {ip_address} 解析 {name} 失败: {error_msg}"
-        else:
-            print(f"DNS更新失败: ---- 时间: " + str(
-                time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) + " ---- 错误信息: " + str(response.text))
-            return f"{record_type}记录: {ip_address} 解析 {name} 失败"
-    except Exception as e:
-        traceback.print_exc()
-        print(f"DNS更新异常: {e}")
-        return f"{record_type}记录: {ip_address} 解析 {name} 异常"
+    summary = f"删除完成: 成功删除 {deleted_count}/{len(records_to_delete)} 条记录"
+    print(summary)
+    
+    return delete_results, summary
 
 def push_notification(content):
     """Telegram消息推送"""
@@ -414,27 +433,8 @@ def main():
     if GENERATE_IPV6:
         print(f"  - IPv6数量: {IPV6_COUNT}")
     
-    # 获取DNS记录（如果配置了环境变量）
-    a_records = []
-    aaaa_records = []
-    if CF_API_TOKEN and CF_ZONE_ID and CF_DNS_NAME:
-        print(f"\n正在获取DNS记录: {CF_DNS_NAME}")
-        all_records = get_dns_records(CF_DNS_NAME)
-        
-        # 分离A记录和AAAA记录
-        for record in all_records:
-            if record['type'] == 'A':
-                a_records.append(record)
-            elif record['type'] == 'AAAA':
-                aaaa_records.append(record)
-        
-        print(f"找到 {len(a_records)} 条A记录和 {len(aaaa_records)} 条AAAA记录")
-    else:
-        print("\n注意: 未配置完整的Cloudflare API环境变量")
-        print("将只生成IP列表，不更新DNS记录")
-    
     # 生成并测试IPv4地址
-    num_ipv4 = max(10, len(a_records)) if a_records else 10
+    num_ipv4 = 10
     print(f"\n正在生成并测试 {num_ipv4} 个IPv4地址...")
     print(f"要求IP地址返回状态码: {EXPECTED_STATUS_CODE}")
     
@@ -451,7 +451,7 @@ def main():
     # 生成并测试IPv6地址（如果启用）
     generated_ipv6 = []
     if GENERATE_IPV6:
-        num_ipv6 = max(IPV6_COUNT, len(aaaa_records)) if aaaa_records else IPV6_COUNT
+        num_ipv6 = IPV6_COUNT
         print(f"\n正在生成并测试 {num_ipv6} 个IPv6地址...")
         
         generated_ipv6 = generate_random_ips_with_retry(num_ips=num_ipv6, is_ipv6=True)
@@ -475,55 +475,77 @@ def main():
         print("\n开始更新DNS记录...")
         push_content = []
         
-        # 更新A记录
-        if a_records and generated_ipv4:
-            print(f"更新A记录...")
-            for index, record in enumerate(a_records):
-                if index < len(generated_ipv4):
-                    ip_address = generated_ipv4[index]
-                    result = update_dns_record(record['id'], CF_DNS_NAME, ip_address, 'A')
-                    push_content.append(result)
-                else:
-                    print(f"没有足够的IPv4地址来更新所有A记录")
-                    break
+        # 1. 删除所有现有的A记录和AAAA记录
+        print("步骤1: 删除现有DNS记录...")
         
-        # 更新AAAA记录
-        if aaaa_records and generated_ipv6:
-            print(f"更新AAAA记录...")
-            for index, record in enumerate(aaaa_records):
-                if index < len(generated_ipv6):
-                    ip_address = generated_ipv6[index]
-                    result = update_dns_record(record['id'], CF_DNS_NAME, ip_address, 'AAAA')
-                    push_content.append(result)
-                else:
-                    print(f"没有足够的IPv6地址来更新所有AAAA记录")
-                    break
+        # 删除所有A记录
+        a_delete_results, a_delete_summary = delete_all_dns_records(CF_DNS_NAME, 'A')
+        push_content.append(f"**A记录删除结果:**")
+        push_content.append(a_delete_summary)
         
-        # 如果没有AAAA记录但有IPv6地址，创建新的AAAA记录
-        if not aaaa_records and generated_ipv6:
-            print(f"创建新的AAAA记录...")
-            for ip_address in generated_ipv6[:10]:  # 最多创建5个AAAA记录
+        # 删除所有AAAA记录
+        aaaa_delete_results, aaaa_delete_summary = delete_all_dns_records(CF_DNS_NAME, 'AAAA')
+        push_content.append(f"**AAAA记录删除结果:**")
+        push_content.append(aaaa_delete_summary)
+        
+        # 2. 创建新的DNS记录
+        print("\n步骤2: 创建新的DNS记录...")
+        create_results = []
+        
+        # 创建A记录（IPv4）
+        if generated_ipv4:
+            print(f"创建A记录...")
+            # 限制创建的A记录数量，避免过多
+            max_a_records = min(10, len(generated_ipv4))
+            for i in range(max_a_records):
+                ip_address = generated_ipv4[i]
+                result = create_dns_record(CF_DNS_NAME, ip_address, 'A')
+                create_results.append(result)
+                print(f"创建A记录 {i+1}/{max_a_records}: {ip_address}")
+        else:
+            create_results.append("没有可用的IPv4地址，跳过A记录创建")
+        
+        # 创建AAAA记录（IPv6）
+        if generated_ipv6 and GENERATE_IPV6:
+            print(f"创建AAAA记录...")
+            # 限制创建的AAAA记录数量，避免过多
+            max_aaaa_records = min(5, len(generated_ipv6))
+            for i in range(max_aaaa_records):
+                ip_address = generated_ipv6[i]
                 result = create_dns_record(CF_DNS_NAME, ip_address, 'AAAA')
-                push_content.append(result)
+                create_results.append(result)
+                print(f"创建AAAA记录 {i+1}/{max_aaaa_records}: {ip_address}")
+        elif GENERATE_IPV6:
+            create_results.append("没有可用的IPv6地址，跳过AAAA记录创建")
+        
+        # 3. 汇总结果
+        push_content.append(f"\n**新记录创建结果:**")
+        push_content.extend(create_results)
         
         # 添加摘要信息到推送内容
-        push_content.insert(0, f"**Cloudflare IP优选结果**")
-        push_content.insert(1, f"更新时间: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
-        push_content.insert(2, f"测试配置: 期望状态码={EXPECTED_STATUS_CODE}")
+        summary_content = []
+        summary_content.append(f"**Cloudflare IP优选及DNS更新**")
+        summary_content.append(f"更新时间: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
+        summary_content.append(f"测试配置: 期望状态码={EXPECTED_STATUS_CODE}")
+        summary_content.append(f"域名: {CF_DNS_NAME}")
         
         if generated_ipv4:
-            push_content.insert(3, f"生成的IPv4地址: {', '.join(generated_ipv4[:10])}")
-            if len(generated_ipv4) > 10:
-                push_content.insert(4, f"更多IPv4地址已保存到文件")
+            summary_content.append(f"\n**IPv4地址 ({len(generated_ipv4)}个):**")
+            summary_content.append(", ".join(generated_ipv4[:5]))
+            if len(generated_ipv4) > 5:
+                summary_content.append(f"... 等共 {len(generated_ipv4)} 个地址")
         
         if generated_ipv6:
-            ipv6_index = 4 if generated_ipv4 else 3
-            push_content.insert(ipv6_index, f"生成的IPv6地址: {', '.join(generated_ipv6[:10])}")
-            if len(generated_ipv6) > 10:
-                push_content.insert(ipv6_index + 1, f"更多IPv6地址已保存到文件")
+            summary_content.append(f"\n**IPv6地址 ({len(generated_ipv6)}个):**")
+            summary_content.append(", ".join(generated_ipv6[:3]))
+            if len(generated_ipv6) > 3:
+                summary_content.append(f"... 等共 {len(generated_ipv6)} 个地址")
+        
+        # 合并所有内容
+        final_push_content = summary_content + [""] + push_content
         
         # 发送推送通知
-        push_notification('\n'.join(push_content))
+        push_notification('\n'.join(final_push_content))
         print("\nDNS记录更新完成")
     else:
         print("\n未更新DNS记录，原因:")
